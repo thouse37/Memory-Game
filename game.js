@@ -11,6 +11,7 @@
     var tester = [];
     var level = 1;
     var gameStarted = false;
+    var gameLost = false;
 
     // start a level
     function startLevel() {
@@ -64,6 +65,7 @@
             setTimeout(function () {
                 $('body').toggleClass("game-over");
             }, 100); 
+            gameLost = true;
         }
 
     }
@@ -83,6 +85,17 @@
 $(document).on("keydown", function () {
     if (!gameStarted) {
         gameStarted = true;
+        solution = [];
+        tester = [];
+        level = 1;
+        startLevel();
+    }
+});
+
+// Retart game 
+$(document).on("keydown", function () {
+    if (gameLost) {
+        gameLost = false;
         solution = [];
         tester = [];
         level = 1;
